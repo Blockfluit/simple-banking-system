@@ -1,0 +1,2 @@
+rootProject.name = 'simple-banking-system'
+include('shared', 'transaction-api', 'transaction-processor', 'web-api')
