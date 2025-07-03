@@ -1,1 +1,7 @@
-spring.application.name: web-api
+spring:
+  application.name: web-api
+  profiles.active: dev
+  r2dbc:
+    url: ${DB_URL:}
+    username: ${DB_USERNAME:}
+    password: ${DB_PASSWORD:}

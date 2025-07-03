@@ -1,13 +1,12 @@
 package nl.nielsb.banking.shared.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import nl.nielsb.banking.shared.entities.auditing.Auditable;
 
-import java.math.BigDecimal;
+import java.util.Currency;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Getter
@@ -23,5 +22,14 @@ public class Account extends Auditable {
     @GeneratedValue
     private UUID id;
     private String iban;
-    private BigDecimal balance;
+    @Enumerated(EnumType.STRING)
+    private Type type;
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @MapKey(name = "currency")
+    private Map<Currency, Balance> balances;
+
+    public enum Type {
+        SAVINGS,
+        CHECKING
+    }
 }

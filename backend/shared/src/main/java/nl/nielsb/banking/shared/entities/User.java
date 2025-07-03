@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import nl.nielsb.banking.shared.entities.auditing.Auditable;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,6 +24,8 @@ public class User extends Auditable {
     private String lastname;
     private String email;
     private String password;
+    private LocalDate birthdate;
+    private String phoneNumber;
     @ManyToMany
     @JoinTable(
             name = "user_account",
